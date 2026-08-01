@@ -1,0 +1,58 @@
+<div class="auth-page">
+  <div class="auth-card">
+
+    <div class="auth-logo">
+      <div class="logo-circle">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .52 5.886 3 3 0 1 0 5.174 3.09" />
+          <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.52 5.886 3 3 0 1 1-5.174 3.09" />
+          <path d="M12 19V5" />
+        </svg>
+      </div>
+    </div>
+
+    <h2>Create Account</h2>
+    <p class="auth-subtitle">Get started with LifeOS</p>
+
+    <form (ngSubmit)="onRegister()">
+
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username" type="text" [(ngModel)]="username" name="username" placeholder="Choose a username"
+          required autocomplete="username" />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" [(ngModel)]="email" name="email" placeholder="enter@email.com"
+          required autocomplete="email" />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <input id="password" [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password"
+            placeholder="At least 6 characters" required autocomplete="new-password" />
+          <button type="button" class="toggle-password" (click)="showPassword = !showPassword">
+            <i [attr.data-lucide]="showPassword ? 'eye-off' : 'eye'"></i>
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="error" class="error-message">
+        {{ error }}
+      </div>
+
+      <button type="submit" class="auth-submit-btn" [disabled]="isLoading">
+        {{ isLoading ? 'Creating Account...' : 'Create Account' }}
+      </button>
+
+    </form>
+
+    <div class="auth-footer">
+      <span>Already have an account? </span>
+      <a routerLink="/auth/login">Sign in</a>
+    </div>
+
+  </div>
+</div>
